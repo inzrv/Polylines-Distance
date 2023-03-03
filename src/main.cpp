@@ -1,19 +1,17 @@
-#include <iostream>
-#include <opencv2/opencv.hpp>
-#include "csv.h"
-
-#include "point.h"
+#include <opencv2/core.hpp>
 #include <vector>
-#include "tracks_reader.h"
 #include <string>
+#include "track.h"
+#include "draw.h"
+#include "read.h"
 
 int main() {
-    std::vector<std::vector<Point>> tracks;
+    std::vector<Track> tracks;
     std::string pathToCSV("../../test/tracks.csv");
     getTracksFromCSV(pathToCSV, tracks);
 
-    for (const auto& point : tracks[0]) {
-        std::cout << point.x << ' ' << point.y << ' ' << point.t << std::endl;
-    }
-
+    std::string  pathToImg("../../test/img/");
+    cv::Mat img;
+    getTracksImg(img, tracks);
+    cv::imwrite(pathToImg + "img1.png", img);
 }
