@@ -6,4 +6,4 @@
 #include "point.h"
 #include <vector>
 
-void getTracksFromCSV(std::string& pathToCSV, std::vector<std::vector<Point>>& tracks);
+void getTracksFromCSV(const std::string& pathToCSV, std::vector<std::vector<Point>>& tracks);

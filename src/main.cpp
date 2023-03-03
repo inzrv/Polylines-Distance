@@ -11,9 +11,9 @@ int main() {
     std::vector<std::vector<Point>> tracks;
     std::string pathToCSV("../../test/tracks.csv");
     getTracksFromCSV(pathToCSV, tracks);
-    for (const auto& track : tracks) {
-        for (const auto& point : track) {
-            std::cout << point.x << ' ' << point.y << ' ' << point.t << std::endl;
-        }
+
+    for (const auto& point : tracks[0]) {
+        std::cout << point.x << ' ' << point.y << ' ' << point.t << std::endl;
     }
+
 }

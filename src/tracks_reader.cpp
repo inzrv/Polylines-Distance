@@ -5,8 +5,9 @@
 #include "csv.h"
 #include "tracks_reader.h"
 #include <sstream>
+#include <algorithm>
 
-int timetoi(std::string& time) {
+int timetoi(const std::string& time) {
     std::vector<int> tokens;
     std::stringstream ss(time);
     std::string item;
@@ -19,7 +20,20 @@ int timetoi(std::string& time) {
     return (seconds + 60 * minutes + 3600 * hours);
 }
 
-void getTracksFromCSV(std::string& pathToCSV, std::vector<std::vector<Point>>& tracks) {
+void sort(std::vector<Point>& track) {
+    std::sort(track.begin(), track.end(),
+              [](const auto& left, const auto& right){
+                return left.t < right.t;
+              });
+}
+
+void sortTracks(std::vector<std::vector<Point>>& tracks) {
+    for (auto& track : tracks) {
+        sort(track);
+    }
+}
+
+void getTracksFromCSV(const std::string& pathToCSV, std::vector<std::vector<Point>>& tracks) {
     io::CSVReader<4, io::trim_chars<' ', '\t'>, io::no_quote_escape<';'>> in(pathToCSV);
     in.read_header(io::ignore_extra_column, "track", "time", "x", "y");
     size_t track_n;
@@ -29,7 +43,7 @@ void getTracksFromCSV(std::string& pathToCSV, std::vector<std::vector<Point>>& t
         if (track_n > tracks.size()) {
             tracks.resize(track_n);
         }
-        int t = timetoi(time);
-        tracks[track_n - 1].push_back(Point(x, y, t));
+        tracks[track_n - 1].push_back(Point(x, y, timetoi(time)));
     }
+    sortTracks(tracks);
 }
