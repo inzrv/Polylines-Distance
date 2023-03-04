@@ -1,10 +1,18 @@
 //
 // Created by Иван Назаров on 03.03.2023.
 //
+#include <random>
 #include "draw.h"
 
-cv::Scalar getRandColor() {
-    return cv::Scalar(rand() & 255, rand() & 255, rand() & 255);
+cv::Scalar generateRandColor() {
+    std::random_device os_seed;
+    auto seed = os_seed();
+    std::mt19937 generator(seed);
+    std::uniform_int_distribution<uint32_t> distribute(0, 255);
+    auto b = distribute(generator);
+    auto g = distribute(generator);
+    auto r = distribute(generator);
+    return cv::Scalar(b, g, r);
 }
 
 void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color) {
@@ -14,8 +22,9 @@ void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color) {
         points.emplace_back(cv::Point(p));
     }
     cv::polylines(img, points, false, color, 2);
-    for (const auto& p : points) {
-        cv::circle(img, p, 5, color, -1);
+    cv::circle(img, points[0], 4, color, -1);
+    for (size_t i = 1; i < points.size(); ++i) {
+        cv::circle(img, points[i], 4, color, 1);
     }
 }
 
@@ -27,21 +36,21 @@ void drawTracks(cv::Mat& img,
         if (i < colors.size()) {
             drawTrack(img, track, colors[i]);
         } else {
-            drawTrack(img, track, getRandColor());
+            drawTrack(img, track, generateRandColor());
         }
     }
 }
 
 cv::Size findImgSize(const std::vector<Track>& tracks, int margin) {
-    int max_x = 0;
-    int max_y = 0;
+    int xMax = 0;
+    int yMax = 0;
     for (const auto& track : tracks) {
         for (const auto& point : track) {
-            max_x = std::max(max_x, point.x);
-            max_y = std::max(max_y, point.y);
+            xMax = std::max(xMax, point.x);
+            yMax = std::max(yMax, point.y);
         }
     }
-    return cv::Size(max_x + margin, max_y + margin);
+    return cv::Size(xMax + margin, yMax + margin);
 }
 
 void getTracksImg(cv::Mat& img,
@@ -49,7 +58,7 @@ void getTracksImg(cv::Mat& img,
                   const cv::Scalar& backColor,
                   const std::vector<cv::Scalar>& trackColors,
                   int margin) {
-    cv::Size imgSize = findImgSize(tracks, margin);
+    auto imgSize = findImgSize(tracks, margin);
     img = cv::Mat(imgSize, CV_8UC3, backColor);
     drawTracks(img, tracks, trackColors);
 }

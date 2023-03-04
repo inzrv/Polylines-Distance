@@ -4,14 +4,21 @@
 #include "track.h"
 #include "draw.h"
 #include "read.h"
+#include "track_generator.h"
 
 int main() {
+    int w = 1000;
+    int h = 500;
+    size_t size = 10;
     std::vector<Track> tracks;
-    std::string pathToCSV("../../test/tracks.csv");
-    getTracksFromCSV(pathToCSV, tracks);
+    size_t n = 3;
+    for (size_t i = 0; i < n; ++i) {
+        Track track;
+        generateRandomTrack(track, size, w, h);
+        tracks.push_back(track);
+    }
 
-    std::string  pathToImg("../../test/img/");
     cv::Mat img;
     getTracksImg(img, tracks);
-    cv::imwrite(pathToImg + "img1.png", img);
+    cv::imwrite("../../test/img/random_tracks.png", img);
 }

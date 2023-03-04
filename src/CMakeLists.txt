@@ -7,5 +7,5 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories("/usr/local/include/opencv4/opencv2/")
 
 set(CMAKE_CXX_STANDARD 17)
-add_executable(Polylines_Distance main.cpp read.cpp draw.cpp)
+add_executable(Polylines_Distance main.cpp read.cpp draw.cpp track_generator.cpp)
 target_link_libraries(Polylines_Distance ${OpenCV_LIBS})

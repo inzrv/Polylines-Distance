@@ -13,13 +13,13 @@ static const cv::Scalar green(0, 255, 0);
 static const cv::Scalar pink(147, 20, 255);
 static const cv::Scalar black(0, 0, 0);
 
-static const std::vector<cv::Scalar> defaultTracksColors = {red,
+static const std::vector<cv::Scalar> defaultTracksColors = {pink,
                                                     white,
-                                                    blue,
                                                     green,
-                                                    pink};
+                                                    blue,
+                                                    red};
 
-cv::Scalar getRandColor();
+cv::Scalar generateRandColor();
 
 void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color = white);
 
