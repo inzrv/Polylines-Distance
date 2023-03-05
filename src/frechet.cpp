@@ -6,17 +6,10 @@
 #include <vector>
 #include <iostream>
 #include "frechet.h"
+#include "metrics.h"
 
 // type for dynamic programming table
 using Table = std::vector<std::vector<double>>;
-
-// this function can be further extended
-double dst(const Point& p1, const Point& p2, const std::string& metric) {
-    if (metric == "euclidean") {
-        return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-    }
-    return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-}
 
 void fillTable(Table& table, const Track& track1, const Track& track2, const std::string& metric) {
     auto rows = track1.size();

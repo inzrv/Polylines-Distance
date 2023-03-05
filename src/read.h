@@ -4,6 +4,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "track.h"
+#include "core_structs.h"
 
 void getTracksFromCSV(const std::string& pathToCSV, std::vector<Track>& tracks);

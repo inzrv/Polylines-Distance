@@ -4,7 +4,6 @@
 #pragma once
 
 #include "core_structs.h"
-
 #include <string>
 
-double frechet(const Track& track1, const Track& track2, const std::string& metric = "euclidean");
+void splitTrack(const Track& srcTrack, Track& splittedTrack, double delta,  const std::string& metric = "euclidean");

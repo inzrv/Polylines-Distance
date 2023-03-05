@@ -4,7 +4,7 @@
 #pragma once
 #include "opencv2/opencv.hpp"
 #include <vector>
-#include "track.h"
+#include "core_structs.h"
 
 static const cv::Scalar red(0, 0, 255);
 static const cv::Scalar white(255, 255, 255);
@@ -13,9 +13,9 @@ static const cv::Scalar green(0, 255, 0);
 static const cv::Scalar pink(147, 20, 255);
 static const cv::Scalar black(0, 0, 0);
 
-static const std::vector<cv::Scalar> defaultTracksColors = {pink,
-                                                            white,
+static const std::vector<cv::Scalar> defaultTracksColors = {white,
                                                             green,
+                                                            pink,
                                                             blue,
                                                             red};
 

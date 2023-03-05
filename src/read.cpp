@@ -7,7 +7,7 @@
 #include "csv.h"
 #include "read.h"
 
-int timetoi(const std::string& time) {
+double timetod(const std::string& time) {
     std::vector<int> tokens;
     std::stringstream ss(time);
     std::string item;
@@ -17,7 +17,7 @@ int timetoi(const std::string& time) {
     int hours = tokens[0];
     int minutes = tokens[1];
     int seconds = tokens[2];
-    return (seconds + 60 * minutes + 3600 * hours);
+    return static_cast<double>(seconds + 60 * minutes + 3600 * hours);
 }
 
 void sort(Track& track) {
@@ -38,12 +38,12 @@ void getTracksFromCSV(const std::string& pathToCSV, std::vector<Track>& tracks) 
     in.read_header(io::ignore_extra_column, "track", "time", "x", "y");
     size_t track_n;
     std::string time;
-    int x, y;
+    double x, y;
     while(in.read_row(track_n, time, x, y)) {
         if (track_n > tracks.size()) {
             tracks.resize(track_n);
         }
-        tracks[track_n - 1].push_back(Point(x, y, timetoi(time)));
+        tracks[track_n - 1].emplace_back(x, y, timetod(time));
     }
     sortTracks(tracks);
 }

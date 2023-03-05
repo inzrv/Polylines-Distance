@@ -23,9 +23,9 @@ void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color) {
         points.emplace_back(cv::Point(p));
     }
     cv::polylines(img, points, false, color, 2);
-    cv::circle(img, points[0], 4, color, -1);
+    cv::circle(img, points[0], 7, color, 3);
     for (size_t i = 1; i < points.size(); ++i) {
-        cv::circle(img, points[i], 4, color, 1);
+        cv::circle(img, points[i], 4, color, -1);
     }
 }
 
@@ -47,8 +47,8 @@ cv::Size findImgSize(const std::vector<Track>& tracks, int margin) {
     int yMax = 0;
     for (const auto& track : tracks) {
         for (const auto& point : track) {
-            xMax = std::max(xMax, point.x);
-            yMax = std::max(yMax, point.y);
+            xMax = std::max(xMax, static_cast<int>(point.x));
+            yMax = std::max(yMax, static_cast<int>(point.y));
         }
     }
     return {xMax + margin, yMax + margin};
