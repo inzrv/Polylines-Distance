@@ -14,20 +14,16 @@ static const cv::Scalar pink(147, 20, 255);
 static const cv::Scalar black(0, 0, 0);
 
 static const std::vector<cv::Scalar> defaultTracksColors = {pink,
-                                                    white,
-                                                    green,
-                                                    blue,
-                                                    red};
-
-cv::Scalar generateRandColor();
+                                                            white,
+                                                            green,
+                                                            blue,
+                                                            red};
 
 void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color = white);
 
 void drawTracks(cv::Mat& img,
-                    const std::vector<Track>& tracks,
-                    const std::vector<cv::Scalar>& colors = defaultTracksColors);
-
-cv::Size findImgSize(const std::vector<Track>& tracks, int margin);
+                const std::vector<Track>& tracks,
+                const std::vector<cv::Scalar>& colors = defaultTracksColors);
 
 void getTracksImg(cv::Mat& img,
                   const std::vector<Track>& tracks,

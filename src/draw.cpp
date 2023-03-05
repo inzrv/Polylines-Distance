@@ -12,7 +12,8 @@ cv::Scalar generateRandColor() {
     auto b = distribute(generator);
     auto g = distribute(generator);
     auto r = distribute(generator);
-    return cv::Scalar(b, g, r);
+    auto color = cv::Scalar(b, g, r);
+    return color;
 }
 
 void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color) {
@@ -50,7 +51,7 @@ cv::Size findImgSize(const std::vector<Track>& tracks, int margin) {
             yMax = std::max(yMax, point.y);
         }
     }
-    return cv::Size(xMax + margin, yMax + margin);
+    return {xMax + margin, yMax + margin};
 }
 
 void getTracksImg(cv::Mat& img,
