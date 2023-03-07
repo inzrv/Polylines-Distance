@@ -1,8 +1,9 @@
 //
 // Created by Иван Назаров on 03.03.2023.
 //
-#include <random>
 #include "draw.h"
+
+#include <random>
 
 cv::Scalar generateRandColor() {
     std::random_device os_seed;

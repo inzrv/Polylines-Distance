@@ -2,10 +2,10 @@
 // Created by Иван Назаров on 07.03.2023.
 //
 #include "distances.h"
+#include "metrics.h"
 
 #include <cmath>
 #include <vector>
-#include "metrics.h"
 
 // Functions for calculating distances between points
 // Use metrics from metrics.h

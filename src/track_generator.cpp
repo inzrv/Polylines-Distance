@@ -3,6 +3,7 @@
 //
 
 #include "track_generator.h"
+
 #include <random>
 #include <cmath>
 

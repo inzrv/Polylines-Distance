@@ -2,9 +2,10 @@
 // Created by Иван Назаров on 03.03.2023.
 //
 #pragma once
+#include "core_structs.h"
+
 #include "opencv2/opencv.hpp"
 #include <vector>
-#include "core_structs.h"
 
 static const cv::Scalar red(0, 0, 255);
 static const cv::Scalar white(255, 255, 255);

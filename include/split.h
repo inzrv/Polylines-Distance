@@ -5,6 +5,7 @@
 
 #include "core_structs.h"
 #include "metrics.h"
+
 #include <string>
 
 void splitTrack(const Track& srcTrack, Track& splittedTrack, double delta, Metric metric = Metric::euclidean);

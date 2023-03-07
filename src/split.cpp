@@ -4,6 +4,7 @@
 
 #include "split.h"
 #include "distances.h"
+
 #include <vector>
 
 struct Segment {

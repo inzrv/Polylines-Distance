@@ -1,10 +1,11 @@
-#include <opencv2/core.hpp>
-#include <vector>
 #include "core_structs.h"
 #include "draw.h"
 #include "distances.h"
 #include "track_generator.h"
 #include "read_write.h"
+
+#include <opencv2/core.hpp>
+#include <vector>
 
 int main() {
     Track red;
