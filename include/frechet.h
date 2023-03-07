@@ -4,7 +4,8 @@
 #pragma once
 
 #include "core_structs.h"
+#include "metrics.h"
 
 #include <string>
 
-double frechet(const Track& track1, const Track& track2, const std::string& metric = "euclidean");
+double frechet(const Track& track1, const Track& track2, Metric metric = Metric::euclidean);

@@ -11,7 +11,7 @@
 // type for dynamic programming table
 using Table = std::vector<std::vector<double>>;
 
-void fillTable(Table& table, const Track& track1, const Track& track2, const std::string& metric) {
+void fillTable(Table& table, const Track& track1, const Track& track2, Metric metric) {
     auto rows = track1.size();
     auto cols = track2.size();
 
@@ -37,7 +37,7 @@ void fillTable(Table& table, const Track& track1, const Track& track2, const std
 
 }
 
-double frechet(const Track& track1, const Track& track2, const std::string& metric) {
+double frechet(const Track& track1, const Track& track2, Metric metric) {
     auto rows = track1.size();
     auto cols = track2.size();
     Table table(rows, std::vector<double>(cols));

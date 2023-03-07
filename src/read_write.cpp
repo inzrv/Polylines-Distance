@@ -3,9 +3,12 @@
 //
 
 #include <sstream>
+#include <fstream>
+#include <iostream>
+#include <string>
 #include <algorithm>
 #include "csv.h"
-#include "read.h"
+#include "read_write.h"
 
 double timetod(const std::string& time) {
     std::vector<int> tokens;
@@ -46,4 +49,27 @@ void getTracksFromCSV(const std::string& pathToCSV, std::vector<Track>& tracks) 
         tracks[track_n - 1].emplace_back(x, y, timetod(time));
     }
     sortTracks(tracks);
+}
+
+// For debug only
+std::string dtotime(double t) {
+    int t_int = static_cast<int>(t);
+    int h = t_int / 3600;
+    int m = t_int / 60;
+    int s = t_int % 60;
+    std::string time = std::to_string(h) + ':' + std::to_string(m) + ':' +std::to_string(s);
+    return time;
+}
+
+// For debug only
+void writeTracksToCSV(const std::vector<Track>& tracks, const std::string& pathToCSV) {
+    std::fstream csv;
+    csv.open(pathToCSV, std::ios::out);
+    csv << "track;time;x;y\n";
+    for (size_t i = 0; i < tracks.size(); ++i) {
+        for (const auto& point : tracks[i]) {
+            csv << i + 1 << ';' << dtotime(point.t) << ';' << static_cast<int>(point.x) << ';' << static_cast<int>(point.y) << '\n';
+        }
+    }
+    csv.close();
 }

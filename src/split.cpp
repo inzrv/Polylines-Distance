@@ -13,7 +13,7 @@ struct Segment {
     Point end;
 };
 
-Point getNextPoint(const Segment& segment, double delta, const std::string& metric) {
+Point getNextPoint(const Segment& segment, double delta, Metric metric) {
     double len = dst(segment.start, segment.end, metric);
     if (len <= delta) {
         return segment.end;
@@ -25,7 +25,7 @@ Point getNextPoint(const Segment& segment, double delta, const std::string& metr
     return Point(x, y, t);
 }
 
-void splitSegment(const Segment& segment, std::vector<Point>& newPoints, double delta, const std::string& metric) {
+void splitSegment(const Segment& segment, std::vector<Point>& newPoints, double delta, Metric metric) {
     assert(newPoints.empty());
     newPoints.push_back(segment.start);
     auto curPoint = getNextPoint(segment, delta, metric);
@@ -35,7 +35,7 @@ void splitSegment(const Segment& segment, std::vector<Point>& newPoints, double 
     }
 }
 
-void splitTrack(const Track& srcTrack, Track& splittedTrack, double delta, const std::string& metric) {
+void splitTrack(const Track& srcTrack, Track& splittedTrack, double delta, Metric metric) {
     assert(splittedTrack.empty());
     for (size_t i = 0; i < srcTrack.size() - 1; ++i) {
         Segment segment(srcTrack[i], srcTrack[i + 1]);

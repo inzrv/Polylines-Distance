@@ -7,3 +7,6 @@
 #include "core_structs.h"
 
 void getTracksFromCSV(const std::string& pathToCSV, std::vector<Track>& tracks);
+
+// For debug only
+void writeTracksToCSV(const std::vector<Track>& tracks, const std::string& pathToCSV);

@@ -3,21 +3,27 @@
 #include <string>
 #include "core_structs.h"
 #include "draw.h"
-#include "read.h"
+#include "read_write.h"
 #include "track_generator.h"
 #include "frechet.h"
 #include "split.h"
 #include "hausdorff.h"
 
 int main() {
-    std::vector<Track> tracks;
-    getTracksFromCSV("../../test/tracks.csv", tracks);
-    Track track1 = tracks[1];
-    Track track2 = tracks[2];
 
-    Track split_track1, split_track2;
-    splitTrack(track1, split_track1, 40);
-    splitTrack(track2, split_track2, 40);
-
-    std::cout << hausdorff(split_track1, split_track2) << std::endl;
 }
+
+/* Tracks from tracks.csv
+ * std::vector<Track> tracks;
+ * getTracksFromCSV("../../test/tracks.csv", tracks);
+ */
+
+/* Generate and save random track
+ * Track randTrack;
+ * generateRandomTrack(randTrack, 20, 1500, 1000);
+ * cv::Mat img;
+ * std::vector<Track> randTrackVec = {randTrack};
+ * getTracksImg(img, randTrackVec);
+ * cv::imwrite("../../test/img/rand_track.png", img);
+ * writeTracksToCSV(randTrackVec, "../../test/rand_track.csv");
+ */
