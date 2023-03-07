@@ -6,8 +6,10 @@
 
 #include "core_structs.h"
 
-enum class Metric {euclidean, manhattan};
+enum class Metric {euclidean, manhattan, XYT};
 
-double dst(const Point& p1, const Point& p2, Metric metric);
+double euclidean(const Point& p1, const Point& p2);
 
-bool isEqual(const Point& p1, const Point& p2, Metric metric);
+double manhattan(const Point& p1, const Point& p2);
+
+double XYT(const Point& p1, const Point& p2);

@@ -14,8 +14,7 @@ add_executable(Tracks-Distance
         src/read_write.cpp
         src/draw.cpp
         src/track_generator.cpp
-        src/frechet.cpp
         src/metrics.cpp
         src/split.cpp
-        src/hausdorff.cpp)
+        src/distances.cpp)
 target_link_libraries(Tracks-Distance ${OpenCV_LIBS})

@@ -14,9 +14,9 @@ static const cv::Scalar pink(147, 20, 255);
 static const cv::Scalar black(0, 0, 0);
 
 static const std::vector<cv::Scalar> defaultTracksColors = {white,
-                                                            green,
-                                                            pink,
                                                             blue,
+                                                            pink,
+                                                            green,
                                                             red};
 
 void drawTrack(cv::Mat& img, const Track& track, const cv::Scalar& color = white);
