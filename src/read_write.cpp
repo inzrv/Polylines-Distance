@@ -10,7 +10,7 @@
 #include "csv.h"
 #include "read_write.h"
 
-double timetod(const std::string& time) {
+double timetosec(const std::string& time) {
     std::vector<int> tokens;
     std::stringstream ss(time);
     std::string item;
@@ -46,13 +46,13 @@ void getTracksFromCSV(const std::string& pathToCSV, std::vector<Track>& tracks) 
         if (track_n > tracks.size()) {
             tracks.resize(track_n);
         }
-        tracks[track_n - 1].emplace_back(x, y, timetod(time));
+        tracks[track_n - 1].emplace_back(x, y, timetosec(time));
     }
     sortTracks(tracks);
 }
 
 // For debug only
-std::string dtotime(double t) {
+std::string sectotime(double t) {
     int t_int = static_cast<int>(t);
     int h = t_int / 3600;
     int m = t_int / 60;
@@ -68,7 +68,7 @@ void writeTracksToCSV(const std::vector<Track>& tracks, const std::string& pathT
     csv << "track;time;x;y\n";
     for (size_t i = 0; i < tracks.size(); ++i) {
         for (const auto& point : tracks[i]) {
-            csv << i + 1 << ';' << dtotime(point.t) << ';' << static_cast<int>(point.x) << ';' << static_cast<int>(point.y) << '\n';
+            csv << i + 1 << ';' << sectotime(point.t) << ';' << static_cast<int>(point.x) << ';' << static_cast<int>(point.y) << '\n';
         }
     }
     csv.close();

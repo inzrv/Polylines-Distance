@@ -4,6 +4,7 @@
 #include "draw.h"
 #include "distances.h"
 #include "track_generator.h"
+#include "read_write.h"
 
 int main() {
     Track red;
@@ -17,6 +18,8 @@ int main() {
     cv::Mat img;
     getTracksImg(img, tracks);
     cv::imwrite("../test/img/two_rand_tracks.png", img);
+
+    writeTracksToCSV(tracks, "../test/csv/two_rand_tracks.csv");
 
     std::cout << "Frechet, euclidean" << std::endl;
     for (size_t i = 0; i < tracks.size() - 1; ++i) {
