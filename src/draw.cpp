@@ -43,15 +43,15 @@ void drawTracks(cv::Mat& img,
 }
 
 cv::Size findImgSize(const std::vector<Track>& tracks, int margin) {
-    int xMax = 0;
-    int yMax = 0;
+    double xMax = 0;
+    double yMax = 0;
     for (const auto& track : tracks) {
         for (const auto& point : track) {
-            xMax = std::max(xMax, static_cast<int>(point.x));
-            yMax = std::max(yMax, static_cast<int>(point.y));
+            xMax = std::max(xMax, point.x);
+            yMax = std::max(yMax, point.y);
         }
     }
-    return {xMax + margin, yMax + margin};
+    return {static_cast<int>(xMax) + margin, static_cast<int>(yMax) + margin};
 }
 
 void getTracksImg(cv::Mat& img,

@@ -7,31 +7,17 @@
 #include "track_generator.h"
 #include "frechet.h"
 #include "split.h"
+#include "hausdorff.h"
 
 int main() {
-
-    /*
     std::vector<Track> tracks;
     getTracksFromCSV("../../test/tracks.csv", tracks);
-     */
+    Track track1 = tracks[1];
+    Track track2 = tracks[2];
 
-    Track randomTrack, splittedRandomTrack;
+    Track split_track1, split_track2;
+    splitTrack(track1, split_track1, 40);
+    splitTrack(track2, split_track2, 40);
 
-    generateRandomTrack(randomTrack, 30, 1500, 1000);
-    splitTrack(randomTrack, splittedRandomTrack, 50);
-
-    std::vector<Track> randomTrackVec = {randomTrack};
-    cv::Mat randomTrackImg;
-    getTracksImg(randomTrackImg, randomTrackVec);
-    cv::imwrite("../../test/img/random_track.png", randomTrackImg);
-
-
-    std::vector<Track> splittedRandomTrackVec = {splittedRandomTrack};
-    cv::Mat splittedRandomTrackImg;
-    getTracksImg(splittedRandomTrackImg, splittedRandomTrackVec);
-    cv::imwrite("../../test/img/splitted_random_track.png", splittedRandomTrackImg);
-
-
-
-
+    std::cout << hausdorff(split_track1, split_track2) << std::endl;
 }

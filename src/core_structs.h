@@ -11,6 +11,12 @@ struct Point {
     double y;
     double t;
     explicit operator cv::Point() const {return {static_cast<int>(x), static_cast<int>(y)};}
+    double operator [](size_t index) const {
+        if (index == 0) {return x;}
+        if (index == 1) {return y;}
+        return t;
+    }
+    static const int DIM = 3;
 };
 
 using Track = std::vector<Point>;
