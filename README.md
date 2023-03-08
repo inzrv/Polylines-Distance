@@ -18,19 +18,22 @@ Let's denote by $d$ and $D$ the functions $d: \mathcal{P} \times \mathcal{P} \to
 Let $T = (v_1, ..., v_n), Q = (u_1, ..., u_m)$ be two trajectories passed as input to the algorithm, and let $d(v,u)$ be the distance between points computed using the metric function.
 
 To compute the Hausdorff distance, it is necessary to calculate two values:
+
 $$
 D(P, Q) = \max_{v_i \in P }{d(v_i, Q)},
 $$
 
 $$
-D(Q, P) = \max_{u_i \in Q }{d(u_i, P)},$$
+D(Q, P) = \max_{u_i \in Q }{d(u_i, P)},
+$$
 
 where $d(v, Q) \stackrel{def}{=} \min\limits_{u_i \in Q} { d(v,u_i)}$.
 
 The returned distance between trajectories is 
-   $$
+
+$$
    H(P, Q)  \stackrel{def}{=}  \max \lbrace D(P, Q), D(Q, P) \rbrace.
-   $$
+$$
 
 
 
