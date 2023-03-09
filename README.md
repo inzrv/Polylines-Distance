@@ -51,6 +51,19 @@ In this implementation, $D(P, Q)$ and $D(Q, P)$ are computed naively by repeatin
 
 So the brute-force algorithm takes $O(nm)$ time, where $n$ and $m$ are the sizes of the tracks. However, by using a $kd$-tree, which has $O(\log n)$ query time, the time complexity can be improved to $O(\max \lbrace n, m \rbrace \log \max\lbrace n, m \rbrace{})$.
 
+### Examples and Illustrations
+
+To demonstrate the algorithm, let's consider two random trajectories.
+
+ In the first image, each point of the white track $T_w$ is connected by a red line segment to the nearest point of the blue track $T_b$. The longest red line segment in the first image represents the distance $D(T_w, T_b)$. 
+
+ <img src="illustrations/hausdorff.png" width="500">
+ 
+ In the second image, each point of the $T_b$ is connected to the nearest point of the $T_w$. The Hausdorff distance $H(T_w, T_b)$ between these two trajectories is represented by the longest red line segment.
 
 
-<img src="test/img/tracks.png" width="500">
+
+
+
+
+<img src="illustrations/hausdorff_2.png" width="500">
