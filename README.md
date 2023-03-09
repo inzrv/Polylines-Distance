@@ -57,13 +57,13 @@ To demonstrate the algorithm, let's consider two random trajectories.
 
  In the first image, each point of the white track $T_w$ is connected by a red line segment to the nearest point of the blue track $T_b$. The longest red line segment in the first image represents the distance $D(T_w, T_b)$. 
 
- <img src="illustrations/hausdorff.png" width="500">
+ <img src="illustrations/hausdorff.png" width="700">
  
- In the second image, each point of the $T_b$ is connected to the nearest point of the $T_w$. The Hausdorff distance $H(T_w, T_b)$ between these two trajectories is represented by the longest red line segment.
+ In the second image, each point of the $T_b$ is connected to the nearest point of the $T_w$. The Hausdorff distance $H(T_w, T_b) = 408.512$ between these two trajectories is represented by the longest red line segment.
 
 
 
 
 
 
-<img src="illustrations/hausdorff_2.png" width="500">
+<img src="illustrations/hausdorff_2.png" width="700">
