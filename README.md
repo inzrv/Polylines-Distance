@@ -25,7 +25,7 @@ Let's denote by $d$ and $D$ the functions $d: \mathcal{P} \times \mathcal{P} \to
 
 ### Algorithm description
 
-Let $T =  \lbrace v_i ~| ~ i \in 1..n \rbrace, Q = \lbrace u_j ~| ~ j \in 1..m \rbrace$ be two trajectories passed as input to the algorithm, and let $d(v,u)$ be the distance between points computed using the metric function.
+Let $T =  \lbrace v_i ~| ~ i \in 1..n \rbrace, Q = \lbrace u_j ~| ~ j \in 1..m \rbrace$ be two trajectories passed as input to the algorithm.
 
 To compute the Hausdorff distance, it is necessary to calculate two values:
 
@@ -78,3 +78,49 @@ Using the example below, the Hausdorff distance $H(P, Q) = 500.0$ between the tr
 Although in some situations it may seem reasonable to require that the distance between them be equal to $\Delta y = 300$ (or close to it). Dividing the tracks into smaller segments can help achieve this result. For the tracks below, $H(P,Q)=300.666$.
 
 <img src="illustrations/hausdorff_4.png" width="700">
+
+
+## Fréchet Distance
+
+### References
+
+- [Thomas Eiter and Heikki Mannila, "Computing Discrete Fréchet Distance"](http://www.kr.tuwien.ac.at/staff/eiter/et-archive/cdtr9464.pdf)
+
+- [Fréchet distance](https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance)
+
+- [Quantify the difference between two arbitrary curves in space](https://pypi.org/project/similaritymeasures/)
+
+### Algorithm description
+
+Let $P = (v_1, ..., v_n)$ and $Q = (u_1, ..., u_m)$ be two trajectories passed as input to the algorithm. Note that this algorithm takes into account the order of points in the track, and we assume that $\forall i,~ v_i.t < v_{i+1}.t$.
+
+The Fréchet distance between $P$ and $Q$ can be calculated using dynamic programming. We first create a table $\tau$ of size $n \times m$, where $\tau[i][j]$ will contain the distance between the trajectories $P_i = (v_1, ..., v_i)$ and $Q_j = (u_1, ..., u_j)$ as the algorithm progresses. The desired Fréchet distance is stored in $\tau[n][m]$.
+
+The cells of the table are filled according to the following rules:
+
+1. $\tau[1][1] = d(v_1, u_1)$;
+
+2. $\tau[i][1] = \max \lbrace \tau[i-1][1], ~ d(v_i, u_1) \rbrace$;
+
+3. $\tau[1][j] = \max \lbrace \tau[1][j-1], ~ d(v_1, u_j) \rbrace$;
+
+4. $\tau[i][j] = \max \lbrace \min \lbrace \tau[i-1][j], ~ \tau[i-1][j-1], ~ \tau[i][j-1] \rbrace, ~d(v_i, u_j) \rbrace$
+
+### Time Complexity
+
+The time required to fill the table $\tau$ is $O(n \times m)$, where $n$ and $m$ are the sizes of the trajectories.
+
+### Examples and Illustrations
+
+We will demonstrate the process of calculating the Fréchet distance on the previously considered trajectories $P$ and $Q$. 
+
+There is an interesting way to think about the Fréchet distance (see more [here](https://en.wikipedia.org/w/index.php?title=Fr%C3%A9chet_distance)).
+
+> Imagine a person traversing a finite curved path while walking their dog on a leash, with the dog traversing a separate finite curved path. Each can vary their speed to keep slack in the leash, but neither can move backwards. The Fréchet distance between the two curves is the length of the shortest leash sufficient for both to traverse their separate paths from start to finish. Note that the definition is symmetric with respect to the two curves—the Fréchet distance would be the same if the dog were walking its owner.
+
+
+
+ Let the blue track be the dog's path, and the white track be its owner's path. They both start at the bold unfilled point. Among all the ways to walk these routes, the optimal one was chosen in terms of the Fréchet distance. Then the red segments connect the points where the length of the leash increased. Therefore, the Fréchet distance $F(P, Q) = 437.340$ for this case is equal to the length of the longest segment.
+
+
+<img src="illustrations/frechet.png" width="700">
