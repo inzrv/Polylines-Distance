@@ -70,3 +70,11 @@ To demonstrate the algorithm, let's consider two random trajectories.
 The Hausdorff distance may be useful if we want to compare tracks as subsets of the real plane. But in this case, if we have a point $v \in P$, the closest point to it in $Q$ need not necessarily come from the original set of observations $\lbrace u _j\rbrace$.
 
 Dividing the original trajectory into smaller segments is one approach that can be used. This technique has been shown to enable a more efficient search for similar tracks, and conversely, to highlight significant differences between them in practice.
+
+Using the example below, the Hausdorff distance $H(P, Q) = 500.0$ between the trajectories $P$ and $Q$ is equal to the length of the long red line segment connecting the points $[1100, 200]$ and $[700, 500]$.
+
+<img src="illustrations/hausdorff_3.png" width="700">
+
+Although in some situations it may seem reasonable to require that the distance between them be equal to $\Delta y = 300$ (or close to it). Dividing the tracks into smaller segments can help achieve this result. For the tracks below, $H(P,Q)=300.666$.
+
+<img src="illustrations/hausdorff_4.png" width="700">
