@@ -8,19 +8,11 @@
 #include <vector>
 
 int main() {
-    Track red;
-    generateRandomTrack(red, 8, 1000, 1000);
-
-    Track white;
-    generateRandomTrack(white, 17, 1000, 1000);
-
-    std::vector<Track> tracks = {red, white};
-
+    std::vector<Track> tracks;
+    getTracksFromCSV("../test/csv/close_tracks.csv", tracks);
     cv::Mat img;
     getTracksImg(img, tracks);
-    cv::imwrite("../test/img/two_rand_tracks.png", img);
-
-    writeTracksToCSV(tracks, "../test/csv/two_rand_tracks.csv");
+    cv::imwrite("../test/img/close_tracks.png", img);
 
     std::cout << "Frechet, euclidean" << std::endl;
     for (size_t i = 0; i < tracks.size() - 1; ++i) {
@@ -31,10 +23,11 @@ int main() {
     }
     std::cout << std::endl;
 
+
     std::cout << "Frechet, XYT" << std::endl;
     for (size_t i = 0; i < tracks.size() - 1; ++i) {
         for (size_t j = i + 1; j < tracks.size(); ++j) {
-            std::cout << "F_t("<< i + 1 << ", " << j + 1 << ") = " <<
+            std::cout << "F_xyt("<< i + 1 << ", " << j + 1 << ") = " <<
                       frechet(tracks[i], tracks[j], Metric::XYT) << std::endl;
         }
     }

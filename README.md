@@ -124,3 +124,36 @@ There is an interesting way to think about the Fréchet distance (see more [here
 
 
 <img src="illustrations/frechet.png" width="700">
+
+## Metrics $d(v, u)$
+
+Up until now, we have only used the time coordinate of observations to order the points of a trajectory. However, if we want to compare trajectories taking into account the speed at which they were traveled, for example, we need to use the time parameter as well. One idea is to treat points as subsets of a three-dimensional space. In this case, the distance metric $d(v, u)$ can be defined as follows:
+
+$$ d_{xyt}(v, u) = \sqrt{(v.x - u.x)^2 + (v.y - u.y)^2 + \alpha(v.t - u.t)^2} $$
+
+
+ The parameter $\alpha$ controls the relative importance of the time component in the distance calculation. By adjusting this parameter, we can make the metric more sensitive to changes in time or to changes in space.
+
+As an example of the usefulness of this approach, let's consider the following scenario: we have three tracks denoted as $B$, $G$, and $W$ based on the first letter of their respective colors. Each track is composed of a sequence of points recorded at one-second intervals. 
+
+ <img src="illustrations/close_tracks.png" width="700">
+
+
+We want to note that the object following the white trajectory moves at a slower pace through specific segments of the path in comparison to the other objects. To do this, we will calculate pairwise Fréchet distances and utilize the previously proposed function as the distance metric. By doing so, we obtain a set of results:
+
+ - $F_{xyt}(W, B) = 801.998,$
+ - $F_{xyt}(W, G) = 803.803,$
+ - $F_{xyt}(B, G) = 110.000.$
+
+To provide a comparison between the two metrics, we have included the pairwise Fréchet distances and Euclidean distances for the points:
+
+ - $F_e(W, B) = 155.322,$
+ - $F_e(W, G) = 140.801,$
+ - $F_e(B, G) = 110.000.$
+
+The application of the $d_{xyt}$ metric allows for a clearer differentiation between the various tracks, which can prove to be advantageous in their classification.
+
+
+
+
+
