@@ -125,7 +125,7 @@ There is an interesting way to think about the Fréchet distance (see more [here
 
 <img src="illustrations/frechet.png" width="700">
 
-## Metrics $d(v, u)$
+## Metrics d(v, u)
 
 Up until now, we have only used the time coordinate of observations to order the points of a trajectory. However, if we want to compare trajectories taking into account the speed at which they were traveled, for example, we need to use the time parameter as well. One idea is to treat points as subsets of a three-dimensional space. In this case, the distance metric $d(v, u)$ can be defined as follows:
 
